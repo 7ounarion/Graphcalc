@@ -1,0 +1,1 @@
+﻿{"version":1,"matrix2":[[3,0],[1,11]],"matrix3":[[2,0,0],[0,2,0],[0,0,2]],"motion":{"x":2,"y":1,"angle":90,"cx":0,"cy":0,"dx":0,"dy":0},"conic":{"kind":"Elips","a":3,"b":2,"h":0,"k":0,"angle":0},"functions":{"expr2":"sin(x)","expr3":"(x^2-y^2)/4","lo":-5,"hi":5}}

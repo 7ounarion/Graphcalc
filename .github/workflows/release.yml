@@ -1,0 +1,35 @@
+name: Windows sürümü
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: GraphCalc v__VERSION__
+          releaseBody: 'GraphCalc Windows sürümü. Kurulum için NSIS paketini, kurulumsuz kullanım için portable EXE dosyasını indirin.'
+          releaseDraft: false
+          prerelease: false
+      - name: Kurulumsuz sürümü ekle
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          $portable = "GraphCalc-$version-portable.exe"
+          Copy-Item -LiteralPath src-tauri/target/release/graphcalc.exe -Destination $portable
+          gh release upload $env:GITHUB_REF_NAME $portable --clobber

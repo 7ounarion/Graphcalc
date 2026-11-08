@@ -1,0 +1,212 @@
+import type { Question } from './types';
+
+export const QUESTIONS: Question[] = [
+  {
+    "id": "q01",
+    "title": "Determinantla üçgen alanı",
+    "topic": "Determinant",
+    "prompt": "Analitik düzlemde A(1,2), B(5,3) ve C(t,6) noktaları veriliyor. ABC üçgeninin alanı 6 birimkare ve t < 17 olduğuna göre t kaçtır?",
+    "options": [
+      "5",
+      "11",
+      "17",
+      "29"
+    ],
+    "correct": 0,
+    "sources": [
+      {
+        "title": "MIT OCW, 18.013A, §4.1 — Area, Volume and the Determinant in Two and Three Dimensions",
+        "url": "https://www.ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter04/section01.html"
+      }
+    ],
+    "steps": [
+      "Kenar vektörlerini kur: AB=(5−1,3−2)=(4,1), AC=(t−1,6−2)=(t−1,4).",
+      "Üçgen alanı determinantın mutlak değerinin yarısıdır: |4·4−1·(t−1)|/2=|17−t|/2.",
+      "Alan 6 olduğundan |17−t|=12; iki aday t=5 ve t=29 bulunur.",
+      "t<17 koşulu yalnız t=5 değerini seçer. Kontrol: |17−5|/2=6."
+    ]
+  },
+  {
+    "id": "q02",
+    "title": "Doğrusal dönüşümden sonra alan",
+    "topic": "Determinant",
+    "prompt": "A(0,0), B(4,1), C(1,3) üçgeninin bütün noktalarına T(x,y)=(2x+y, x−y) dönüşümü uygulanıyor. Görüntü üçgeninin alanı kaç birimkaredir?",
+    "options": [
+      "11/2",
+      "11",
+      "33/2",
+      "33"
+    ],
+    "correct": 2,
+    "sources": [
+      {
+        "title": "MIT OCW, §4.1 — Area, Volume and the Determinant",
+        "url": "https://www.ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter04/section01.html"
+      }
+    ],
+    "steps": [
+      "Görüntü noktalarını hesapla: A′=(0,0), B′=(2·4+1,4−1)=(9,3), C′=(2·1+3,1−3)=(5,−2).",
+      "Görüntü üçgeninin alanı |9·(−2)−3·5|/2=|−33|/2=33/2 birimkaredir.",
+      "Bağımsız kontrol: ilk alan |4·3−1·1|/2=11/2; T matrisinin determinantı −3, alan katsayısı |−3|=3.",
+      "Bu nedenle yeni alan 3·11/2=33/2 olur; determinantın negatif işareti alanı negatif yapmaz."
+    ]
+  },
+  {
+    "id": "q03",
+    "title": "Bir merkez etrafında dönme ve ardından öteleme",
+    "topic": "Dönüşümler",
+    "prompt": "P(5,1) noktası önce C(2,−1) merkezi etrafında saat yönünün tersine 90° döndürülüyor. Elde edilen nokta daha sonra (−1,3) vektörüyle öteleniyor. Son noktanın koordinatları nedir?",
+    "options": [
+      "(3,−1)",
+      "(−2,8)",
+      "(−1,5)",
+      "(−4,4)"
+    ],
+    "correct": 2,
+    "sources": [
+      {
+        "title": "University of South Carolina, Math 532/736I, Lecture Notes 10 — Notes on Translations and Rotations, s. 1–3",
+        "url": "https://people.math.sc.edu/filaseta/courses/Math532/Math532RotationNotes.pdf"
+      }
+    ],
+    "steps": [
+      "Merkezi orijine taşı: P−C=(5−2,1−(−1))=(3,2).",
+      "Saat yönünün tersine 90° dönüşüm (u,v)→(−v,u) verir; (3,2)→(−2,3).",
+      "Merkezi geri ekle: C+(−2,3)=(0,2).",
+      "Sonra (−1,3) ile ötele: (0,2)+(−1,3)=(−1,5). Dönme öncesi ve sonrası merkeze uzaklık √13 kalır."
+    ]
+  },
+  {
+    "id": "q04",
+    "title": "Farklı merkezli iki yarım dönmenin bileşkesi",
+    "topic": "Dönüşümler",
+    "prompt": "Düzlemde her nokta önce A(1,−2) merkezi etrafında 180°, ardından B(4,1) merkezi etrafında 180° döndürülüyor. Bu bileşke hangi tek dönüşüme eşittir?",
+    "options": [
+      "(3,3) vektörüyle öteleme",
+      "(−6,−6) vektörüyle öteleme",
+      "(5,−1) vektörüyle öteleme",
+      "(6,6) vektörüyle öteleme"
+    ],
+    "correct": 3,
+    "sources": [
+      {
+        "title": "Stony Brook University, MAT 515: Geometry for Teachers, “Composition of rotations”, Teorem 10, PDF s. 36",
+        "url": "https://www.math.stonybrook.edu/Courses/MAT515/201208/MAT515F12.pdf#page=36"
+      },
+      {
+        "title": "University of South Carolina, Lecture Notes 10",
+        "url": "https://people.math.sc.edu/filaseta/courses/Math532/Math532RotationNotes.pdf"
+      }
+    ],
+    "steps": [
+      "Genel X=(x,y) noktası için A merkezli yarım dönme X′=2A−X verir.",
+      "Ardından B merkezli yarım dönme: X″=2B−X′=2B−(2A−X)=X+2(B−A).",
+      "B−A=(4−1,1−(−2))=(3,3); iki katı (6,6) olur.",
+      "Bileşke tüm düzlemde (6,6) ötelemesidir. Örnek kontrol: (0,0)→(2,−4)→(6,6)."
+    ]
+  },
+  {
+    "id": "q05",
+    "title": "Genel denklemden elipsin odakları",
+    "topic": "Konikler",
+    "prompt": "9x²+25y²−36x+50y−164=0 elipsinin odakları aşağıdakilerden hangisidir?",
+    "options": [
+      "(−3,−1) ve (7,−1)",
+      "(−2,−1) ve (6,−1)",
+      "(2,−5) ve (2,3)",
+      "(−6,1) ve (2,1)"
+    ],
+    "correct": 1,
+    "sources": [
+      {
+        "title": "OpenStax, Precalculus 2e, §10.1 — The Ellipse",
+        "url": "https://openstax.org/books/precalculus-2e/pages/10-1-the-ellipse"
+      }
+    ],
+    "steps": [
+      "Kareye tamamla: 9(x²−4x)+25(y²+2y)=164; 9(x−2)²+25(y+1)²=225.",
+      "225 ile böl: (x−2)²/25+(y+1)²/9=1. Merkez (2,−1), büyük eksen yataydır.",
+      "a²=25, b²=9; odak uzaklığı c²=a²−b²=16, dolayısıyla c=4.",
+      "Odaklar (2±4,−1), yani (−2,−1) ve (6,−1) olur. İkisinin orta noktası merkezdir."
+    ]
+  },
+  {
+    "id": "q06",
+    "title": "Ötelenmiş hiperbolün asimptotları",
+    "topic": "Konikler",
+    "prompt": "9x²−16y²−18x−64y−199=0 hiperbolünün iki asimptotunu birlikte veren seçenek hangisidir? ± işareti iki ayrı doğruyu belirtir.",
+    "options": [
+      "y+2 = ±(3/4)(x−1)",
+      "y+2 = ±(4/3)(x−1)",
+      "y−2 = ±(3/4)(x+1)",
+      "y = ±(3/4)x"
+    ],
+    "correct": 0,
+    "sources": [
+      {
+        "title": "OpenStax, Precalculus 2e, §10.2 — The Hyperbola",
+        "url": "https://openstax.org/books/precalculus-2e/pages/10-2-the-hyperbola"
+      }
+    ],
+    "steps": [
+      "Kareye tamamla: 9(x²−2x)−16(y²+4y)=199; 9(x−1)²−16(y+2)²=144.",
+      "144 ile böl: (x−1)²/16−(y+2)²/9=1. Merkez (1,−2), a=4 ve b=3.",
+      "Yatay hiperbol için asimptotlar y−k=±(b/a)(x−h) biçimindedir.",
+      "Yerine koyunca y+2=±(3/4)(x−1) bulunur. Her iki doğru da merkezden geçer; eğimler ±3/4 olur."
+    ]
+  },
+  {
+    "id": "q07",
+    "title": "Odak ve doğrultmandan parabol denklemi",
+    "topic": "Konikler",
+    "prompt": "Odağı F(−1,4), doğrultmanı y=−2 olan parabolün denklemi hangisidir?",
+    "options": [
+      "(x−1)² = 12(y−1)",
+      "(x+1)² = 6(y−1)",
+      "(y−1)² = 12(x+1)",
+      "(x+1)² = 12(y−1)"
+    ],
+    "correct": 3,
+    "sources": [
+      {
+        "title": "OpenStax, Precalculus 2e, §10.3 — The Parabola",
+        "url": "https://openstax.org/books/precalculus-2e/pages/10-3-the-parabola"
+      }
+    ],
+    "steps": [
+      "Odak F(−1,4) ve yatay doğrultman y=−2 olduğundan simetri ekseni x=−1 olur.",
+      "Tepe, odak ile doğrultman üzerindeki en yakın noktanın ortasıdır: V=(−1,(4+(−2))/2)=(−1,1).",
+      "Tepe–odak uzaklığı p=4−1=3; parabol yukarı açılır.",
+      "(x−h)²=4p(y−k) formülüne göre (x+1)²=12(y−1). Geri kontrol: odak (−1,1+3), doğrultman y=1−3."
+    ]
+  },
+  {
+    "id": "q08",
+    "title": "Orijin dışındaki merkez etrafında elipsi döndürme",
+    "topic": "Konikler",
+    "prompt": "x²/16+y²/9=1 elipsinin bütün noktaları C(1,0) merkezi etrafında saat yönünün tersine 90° döndürülüyor. Görüntü elipsinin denklemi hangisidir?",
+    "options": [
+      "(x−1)²/16+(y+1)²/9=1",
+      "(x+1)²/9+(y−1)²/16=1",
+      "(x−1)²/9+(y+1)²/16=1",
+      "x²/9+y²/16=1"
+    ],
+    "correct": 2,
+    "sources": [
+      {
+        "title": "University of South Carolina, Lecture Notes 10 — Translations and Rotations",
+        "url": "https://people.math.sc.edu/filaseta/courses/Math532/Math532RotationNotes.pdf"
+      },
+      {
+        "title": "OpenStax §10.1 — The Ellipse",
+        "url": "https://openstax.org/books/precalculus-2e/pages/10-1-the-ellipse"
+      }
+    ],
+    "steps": [
+      "Eski noktayı (u,v), görüntüsünü (x,y) olarak adlandır. C(1,0) etrafında 90° dönme (x,y)=(1−v,u−1) verir.",
+      "Ters bağıntı u=y+1 ve v=1−x olur. İlk elips denkleminde bunları yerine koy.",
+      "(y+1)²/16+(1−x)²/9=1; eşdeğer biçim (x−1)²/9+(y+1)²/16=1 olur.",
+      "Merkez (0,0)→(1,−1), büyük eksen düşey olur. Uç noktaların görüntüleri (1,3) ve (1,−5) denklemi sağlar."
+    ]
+  }
+];
